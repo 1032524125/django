@@ -1,0 +1,79 @@
+{% extends 'base_main.html' %}
+{% block title %}
+
+{% endblock %}
+
+
+{% block extCss %}
+
+  <style>
+    .dataStatistic{width:400px;height:200px;border:1px solid #ccc;margin:0 auto;margin:10px;overflow:hidden}
+    #cylindrical{width:400px;height:200px;margin-top:-15px}
+    #line{width:400px;height:200px;margin-top:-15px}
+    #pie{width:400px;height:200px;margin-top:-15px}
+    </style>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">商品列表</h2>
+            <a href="{% url 'goods:goods_detail' %}" class="fr top_rt_btn add_icon">添加商品</a>
+        </div>
+        <table class="table">
+            <tr>
+                <th>缩略图</th>
+                <th>产品名称</th>
+                <th>商品类型</th>
+                <th>货号</th>
+                <th>市场单价</th>
+                <th>本店单价</th>
+                <th>库存</th>
+                <th>详情</th>
+                <th>操作</th>
+            </tr>
+
+                <tr>
+                    <td class="center"><img src="/media/{{ category.category_front_image}}" width="50" height="50" alt="" /></td>
+                    <td class="center">精品牛腿肉</td>
+                    <td class="center">
+
+                    </td>
+                    <td class="center">1010</td>
+                    <td class="center"><strong class="rmb_icon">130.0</strong></td>
+                    <td class="center"><strong class="rmb_icon">120.0</strong></td>
+                    <td class="center">3000</td>
+                    <td class="center">
+                        <a href="goods_desc.html">精品牛腿肉描述</a>
+                    </td>
+                    <td class="center">
+                        <a href="" title="编辑" class="link_icon">&#101;</a>
+                        <a onclick="" title="删除" class="link_icon">&#100;</a>
+                    </td>
+                </tr>
+
+        </table>
+        <aside class="paging">
+            <a>当前1页</a>
+            <a href="">第一页</a>
+            
+                <a href=""> 1 </a>
+            
+                <a href=""> 2 </a>
+            
+                <a href=""> 3 </a>
+            
+            <a href="">最后一页</a>
+        </aside>
+    </div>
+</section>
+
+{% endblock %}
+
+
