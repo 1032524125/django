@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block extCss %}
+<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+{% endblock %}
+{% block content1 %}
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到天天生鲜!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+                    {% if request.user %}
+                        <a href="{% url 'user:back_login' %}" id="show_name">欢迎：<span style="color: red">{{ request.user.username }}</span></a>
+					<span>|</span>
+					<a href="{% url 'user:logout' %}">注销</a>
+                    {% else  %}
+					<a href="{% url 'user:back_login' %}" id="show_name">登录</a>
+					<span>|</span>
+					<a href="{% url 'user:back_register' %}">注册</a>
+                    {% endif %}
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'user:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'cart:into_cart' %}">我的购物车</a>
+					<span>|</span>
+					<a href="{% url 'user:user_center_order' %}">我的订单</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="search_bar clearfix">
+		<a href="{% url 'home:back_index' %}" class="logo fl"><img src="/static/images/logo.png"></a>
+		<div class="search_con fl">
+			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="button" class="input_btn fr" name="" value="搜索">
+		</div>
+		<div class="guest_cart fr">
+			<a href="{% url 'cart:into_cart' %}" class="cart_name fl">我的购物车</a>
+			<div class="goods_count fl" id="show_count">1</div>
+		</div>
+	</div>
+    <script>
+    var csrf = $('input[name="csrfmiddlewaretoken"]').val()
+    $.ajax({
+                url: '/home/index/',
+                dataType:'json',
+                type:'GET',
+                headers:{'X-CSRFToken': csrf},
+                data:{'user':user},
+                success:function(data){
+                    if(data.code == '200'){
+                        $('.show_name').html(user.name)
+
+                    }
+                },
+                error:function(data){
+                    alert('请求失败')
+                }
+            })
+    </script>
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+{% endblock %}
+{% block content2 %}
+	<div class="footer no-mp">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-****888    京ICP备*******8号</p>
+	</div>
+{% endblock %}
